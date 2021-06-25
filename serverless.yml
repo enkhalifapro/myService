@@ -1,0 +1,35 @@
+service: newService-1
+plugins:
+  - serverless-localstack
+
+custom:
+  localstack:
+    debug: true
+    stages:
+      - local
+      - dev
+    #endpointFile: localstack_endpoints.json
+    host: http://localhost  # optional - LocalStack host to connect to
+    edgePort: 4566  # optional - LocalStack edge port to connect to
+    autostart: false  # optional - Start LocalStack in Docker on Serv
+    lambda:
+      # Enable this flag to improve performance
+      mountCode: True
+provider:
+  name: aws
+  runtime: go1.x
+  lambdaHashingVersion: 20201221
+
+
+frameworkVersion: '2'
+
+functions:
+  world:
+    handler: bin/world
+    events:
+      - httpApi:
+          path: /world
+          method: get
+
+
+
