@@ -9,7 +9,7 @@ clean:
 	rm -rf ./bin ./vendor go.sum
 
 deploy: clean build
-	sls deploy --verbose
+	sls deploy --stage local --verbose
 
 gomodgen:
 	chmod u+x gomod.sh
