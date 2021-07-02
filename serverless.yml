@@ -1,7 +1,12 @@
 service: myservice
 plugins:
   - serverless-localstack
+  - serverless-offline
 
+custom_sls:
+  serverless-offline:
+    httpsProtocol: "dev-certs"
+    httpPort: 4000
 custom:
   localstack:
     debug: true
